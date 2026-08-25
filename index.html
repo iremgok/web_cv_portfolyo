@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İrem Gök | Personal Portfolio</title>
+    <!-- Pixelify Sans and VT323 Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=VT323&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Circuit Board Trace Patterns (Left & Right background SVGs) -->
+    <div class="circuit-bg circuit-left">
+        <svg width="150" height="800" viewBox="0 0 150 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="circuit-line" d="M10 20 H50 V100 H100 V180 H80 V300 H120" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M30 0 V60 H70 V150 H120 V250 H90 V400 H130" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M0 120 H40 V200 H20 V380 H80 V480 H140" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M20 280 H60 V360 H10 V520 H90 V650 H120" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M50 450 H100 V530 H60 V680 H110 V780" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <circle class="circuit-node" cx="120" cy="300" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="130" cy="400" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="140" cy="480" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="120" cy="650" r="4" fill="#ff007f" />
+        </svg>
+    </div>
+
+    <div class="circuit-bg circuit-right">
+        <svg width="150" height="800" viewBox="0 0 150 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="circuit-line" d="M140 30 H100 V120 H50 V200 H80 V320 H20" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M110 10 V80 H60 V180 H30 V290 H70 V420 H10" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M150 140 H110 V230 H130 V400 H70 V500 H20" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M130 300 H90 V380 H140 V540 H50 V660 H30" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <path class="circuit-line" d="M100 480 H50 V560 H90 V700 H40 V790" stroke="#ff007f" stroke-width="2" stroke-linecap="round" />
+            <circle class="circuit-node" cx="20" cy="320" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="10" cy="420" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="20" cy="500" r="4" fill="#ff007f" />
+            <circle class="circuit-node" cx="30" cy="660" r="4" fill="#ff007f" />
+        </svg>
+    </div>
+
+    <!-- Fixed Top Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-logo-box">İG</div>
+                <div class="brand-text">
+                    <span class="name">İREM GÖK</span>
+                    <span class="title">COMPUTER ENGINEERING STUDENT</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#experience" class="nav-item">Experience</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </nav>
+            <div class="nav-cv-container">
+                <a href="assets/cv.pdf" target="_blank" class="cv-btn-nav">CV</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container -->
+    <main class="main-layout">
+
+        <!-- Subtle Floating Space/Tech Watermarks -->
+        <div class="hero-watermarks">
+            <!-- Saturn -->
+            <svg class="watermark-svg watermark-saturn" width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="18" stroke="#ff007f" stroke-width="1.5" />
+                <ellipse cx="50" cy="50" rx="35" ry="7" stroke="#ff007f" stroke-width="1.5" transform="rotate(-15 50 50)" />
+            </svg>
+            <!-- Rocket -->
+            <svg class="watermark-svg watermark-rocket" width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 30 C60 30 70 40 70 50 L55 65 L35 45 L50 30 Z" stroke="#ff007f" stroke-width="1.5" />
+                <path d="M70 30 L80 20" stroke="#ff007f" stroke-width="1.5" />
+                <path d="M35 45 L25 55 L35 60 Z" stroke="#ff007f" stroke-width="1.5" />
+                <path d="M55 65 L60 75 L65 65 Z" stroke="#ff007f" stroke-width="1.5" />
+                <path d="M25 65 C20 70 20 75 25 80 C30 80 35 75 35 70" stroke="#ff007f" stroke-width="1.5" />
+            </svg>
+            <!-- Computer -->
+            <svg class="watermark-svg watermark-computer" width="75" height="75" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="60" height="45" rx="3" stroke="#ff007f" stroke-width="1.5" />
+                <rect x="25" y="25" width="50" height="35" stroke="#ff007f" stroke-width="1" />
+                <path d="M40 37 L35 42 L40 47" stroke="#ff007f" stroke-width="1.2" />
+                <path d="M48 49 L52 35" stroke="#ff007f" stroke-width="1.2" />
+                <path d="M60 37 L65 42 L60 47" stroke="#ff007f" stroke-width="1.2" />
+                <path d="M45 65 L40 78 H60 L55 65 Z" stroke="#ff007f" stroke-width="1.5" />
+            </svg>
+            <!-- Constellation / Star Cluster -->
+            <svg class="watermark-svg watermark-constellation" width="90" height="90" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="30" r="2" fill="#ff007f" />
+                <circle cx="50" cy="20" r="3" fill="#ff007f" />
+                <circle cx="80" cy="40" r="2" fill="#ff007f" />
+                <circle cx="60" cy="70" r="2.5" fill="#ff007f" />
+                <line x1="20" y1="30" x2="50" y2="20" stroke="#ff007f" stroke-width="1" stroke-dasharray="3 3" />
+                <line x1="50" y1="20" x2="80" y2="40" stroke="#ff007f" stroke-width="1" stroke-dasharray="3 3" />
+                <line x1="80" y1="40" x2="60" y2="70" stroke="#ff007f" stroke-width="1" stroke-dasharray="3 3" />
+            </svg>
+        </div>
+
+        <!-- Left Column: Scrollable Content -->
+        <div class="content-pane">
+            
+            <!-- SECTION 1: HOME -->
+            <section id="home" class="active-section">
+                <h2 class="section-title">HOME</h2>
+                <div class="retro-box home-box">
+                    <div class="retro-box-header">About Me:</div>
+                    <p class="bio-text">
+                        Hello! I'm <strong>İrem Gök</strong>, a senior Computer Engineering student at İzmir Bakırçay University. I have a great passion for software development, embedded systems, and emerging technologies. I love continuously improving myself and creating creative solutions to complex engineering problems.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: PROJECTS -->
+            <section id="projects">
+                <h2 class="section-title">PROJECTS</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Card 1: TEKNOFEST MLvisor -->
+                    <div class="project-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/project1.png" alt="TEKNOFEST MLvisor" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">TEKNOFEST MLvisor</h3>
+                            <p class="project-subtitle">AI-Powered Image Processing</p>
+                            <p class="project-description">
+                                Developed machine learning and image processing algorithms for Unmanned Aerial Vehicles (UAVs). Implemented object tracking with an ML-based camera interface.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: TEKNOFEST Underwater -->
+                    <div class="project-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/project2.png" alt="TEKNOFEST Underwater" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">TEKNOFEST Underwater</h3>
+                            <p class="project-subtitle">Autonomous Underwater Vehicle (AUV)</p>
+                            <p class="project-description">
+                                Worked on control systems and sensor integration of an autonomous underwater robot. Integrated path planning and tracking algorithms using ROS (Robot Operating System).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: TÜBİTAK OHS VR Training -->
+                    <div class="project-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/project3.png" alt="TÜBİTAK OHS VR Training" class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-card-title">TÜBİTAK OHS VR Training</h3>
+                            <p class="project-subtitle">Virtual Reality Occupational Health and Safety</p>
+                            <p class="project-description">
+                                Designed virtual reality-based occupational health and safety training modules. Created interactive scenarios and virtual environments using Unity and VR hardware.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 3: EXPERIENCE -->
+            <section id="experience">
+                <h2 class="section-title">EXPERIENCE</h2>
+                <div class="timeline">
+                    
+                    <!-- Exp 1: Bakırçay Üni -->
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <img src="assets/exp1_logo_transparent.png" alt="Bakırçay Uni Logo" class="exp-logo">
+                            <div class="exp-title-block">
+                                <h3 class="company-name">İzmir Bakırçay University</h3>
+                                <p class="job-role">R&D Assistant (Part-time)</p>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <p class="exp-desc">Participated in innovative software development projects carried out within the university and supported research activities.</p>
+                        </div>
+                    </div>
+
+                    <!-- Exp 2: PHINIA Delphi -->
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <img src="assets/exp2_logo_transparent.png" alt="PHINIA Logo" class="exp-logo text-logo">
+                            <div class="exp-title-block">
+                                <h3 class="company-name">PHINIA Delphi</h3>
+                                <p class="job-role">Intern Engineer (Embedded Systems)</p>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <p class="exp-desc">Worked on embedded systems software architecture, hardware-software integration, and automated software validation/testing processes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Exp 3: Johnson Electric -->
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <img src="assets/exp3_logo_transparent.png" alt="Johnson Electric Logo" class="exp-logo text-logo">
+                            <div class="exp-title-block">
+                                <h3 class="company-name">Johnson Electric</h3>
+                                <p class="job-role">Intern Engineer (Automation)</p>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <p class="exp-desc">Gained practical experience in industrial automation systems, PLC programming, and optimization of robotic systems on production lines.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 4: CONTACT -->
+            <section id="contact">
+                <h2 class="section-title">CONTACT</h2>
+                <div class="retro-box contact-box">
+                    <form id="contact-form" class="pixel-form">
+                        <div class="form-group">
+                            <label for="name">NAME / SURNAME</label>
+                            <input type="text" id="name" required placeholder="Your name...">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input type="email" id="email" required placeholder="Your email...">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">YOUR MESSAGE</label>
+                            <textarea id="message" required rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                    </form>
+                    
+                    <div class="success-message" id="success-banner">
+                        <i class="fa-solid fa-circle-check"></i> Your message has been sent successfully! I will get back to you as soon as possible.
+                    </div>
+                </div>
+
+                <!-- Glowing Social & Contact Buttons -->
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" class="social-btn linkedin-btn">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com" target="_blank" class="social-btn github-btn">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:irem.gok@example.com" class="social-btn email-btn">
+                        <i class="fa-solid fa-envelope"></i> Email Me
+                    </a>
+                    <a href="tel:05527907090" class="social-btn phone-btn">
+                        <i class="fa-solid fa-phone"></i> 05527907090
+                    </a>
+                    <a href="assets/cv.pdf" target="_blank" class="social-btn cv-btn-large">
+                        CV
+                    </a>
+                </div>
+            </section>
+
+        </div> <!-- End of content-pane -->
+
+        <!-- Right Column: Sticky Character Display -->
+        <div class="character-pane">
+            <div class="character-card">
+                <!-- Circuit-board background pattern inside the card -->
+                <div class="char-circuit"></div>
+                
+                <!-- Floating Particle Containers -->
+                <div id="leaves-container"></div>
+                <div id="sparkles-container"></div>
+                
+                <!-- Standing Stardew Character -->
+                <div class="character-wrapper">
+                    <img src="assets/character_transparent.png" id="character-sprite" alt="İrem Gök Character">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Custom Script File -->
+    <script src="script.js"></script>
+</body>
+</html>
