@@ -1,104 +1,102 @@
 /* ==========================================================================
    İrem Gök Portfolio - JavaScript (script.js)
-   Interactive scrolling, particle generator, and contact form handling
+   CV View & Download Handler, Navigation Scroll, Particles, and Canvas Cleaner
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+// 1. CV View & Auto Download Function (Blob & Object URL with Safe Backup Routing)
+function handleCvDownload(event) {
+    if (event) event.preventDefault();
     
-    // --- PART 1: PARTICLE SYSTEM (Leaves & Sparkles) ---
-    const leavesContainer = document.getElementById('leaves-container');
-    const sparklesContainer = document.getElementById('sparkles-container');
+    // URL-encoded primary path and secure fallback path
+    const primaryPath = 'assets/cv/IREM_GOK%27S_CV.pdf';
+    const fallbackPath = 'assets/cv/cv.pdf';
+    const fileName = 'Irem_Gok_CV.pdf';
 
-    // Spawn a leaf particle
-    function spawnLeaf() {
-        if (!leavesContainer) return;
-        
-        const leaf = document.createElement('div');
-        leaf.className = 'particle leaf-particle';
-        
-        // Random starting horizontal position inside the card (width ~320px)
-        const startX = Math.random() * 280 + 10;
-        leaf.style.left = `${startX}px`;
-        leaf.style.top = `-10px`;
-        
-        // Random scale (0.5 to 1.3)
-        const scale = 0.5 + Math.random() * 0.8;
-        leaf.style.transform = `scale(${scale})`;
-        
-        // Random rotation speed and sway offset
-        const duration = 5 + Math.random() * 5; // 5 to 10 seconds
-        const delay = Math.random() * 2;
-        
-        leaf.style.animation = `float-leaf ${duration}s linear ${delay}s infinite`;
-        
-        leavesContainer.appendChild(leaf);
-        
-        // Remove from DOM when animation ends to prevent memory leak
-        setTimeout(() => {
-            leaf.remove();
-        }, (duration + delay) * 1000);
-    }
+    // A) Attempt to open the primary PDF in a new tab immediately (Synchronously)
+    const newTab = window.open(primaryPath, '_blank');
 
-    // Spawn a sparkle star particle
-    function spawnSparkle() {
-        if (!sparklesContainer) return;
-        
-        const sparkle = document.createElement('div');
-        sparkrule_class = Math.random() > 0.5 ? 'particle star-particle' : 'particle star-particle';
-        sparkle.className = 'particle star-particle';
-        
-        // Random position around the character card (x: 20-300px, y: 50-430px)
-        const x = Math.random() * 280 + 20;
-        const y = Math.random() * 380 + 40;
-        
-        sparkle.style.left = `${x}px`;
-        sparkle.style.top = `${y}px`;
-        
-        // Random scale
-        const scale = 0.4 + Math.random() * 0.8;
-        sparkle.style.transform = `scale(${scale})`;
-        
-        // Random animation duration
-        const duration = 1.5 + Math.random() * 2; // 1.5 to 3.5 seconds
-        sparkle.style.animationDuration = `${duration}s`;
-        
-        sparklesContainer.appendChild(sparkle);
-        
-        // Remove after animation completes
-        setTimeout(() => {
-            sparkle.remove();
-        }, duration * 1000);
-    }
+    // B) Simultaneously attempt to download the primary PDF file via Blob Fetch
+    fetch(primaryPath)
+        .then(response => {
+            if (!response.ok) throw new Error("Primary CV file not found");
+            return response.blob();
+        })
+        .then(blob => {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const downloadLink = document.createElement('a');
+            downloadLink.href = blobUrl;
+            downloadLink.download = fileName;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(err => {
+            console.warn("Primary CV path failed, attempting fallback path...", err);
+            
+            // Redirect the already opened tab if possible, or open fallback
+            if (newTab) {
+                try {
+                    newTab.location.href = fallbackPath;
+                } catch (e) {
+                    window.open(fallbackPath, '_blank');
+                }
+            } else {
+                window.open(fallbackPath, '_blank');
+            }
 
-    // Start particle spawning loops
-    if (leavesContainer && sparklesContainer) {
-        // Initial batch of sparkles
-        for (let i = 0; i < 6; i++) {
-            setTimeout(spawnSparkle, Math.random() * 2000);
-        }
-        
-        // Recurring spawns
-        setInterval(spawnLeaf, 1200);   // Spawn a leaf every 1.2 seconds
-        setInterval(spawnSparkle, 700);  // Spawn a sparkle every 700ms
-    }
+            // Attempt to download the fallback PDF file
+            fetch(fallbackPath)
+                .then(response => {
+                    if (!response.ok) throw new Error("Fallback CV file not found");
+                    return response.blob();
+                })
+                .then(blob => {
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = blobUrl;
+                    downloadLink.download = fileName;
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    window.URL.revokeObjectURL(blobUrl);
+                })
+                .catch(fallbackErr => {
+                    console.error("All CV download attempts failed:", fallbackErr);
+                    // Last resort direct download link fallback
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = fallbackPath;
+                    downloadLink.download = fileName;
+                    downloadLink.target = '_blank';
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                });
+        });
+}
 
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- PART 2: DYNAMIC NAVIGATION HIGHLIGHTING (Intersection Observer) ---
+    // 2. Bind CV download buttons using a single loop in script.js
+    const cvButtons = document.querySelectorAll('.cv-btn-nav, .cv-action-btn-large');
+    cvButtons.forEach(btn => {
+        btn.addEventListener('click', handleCvDownload);
+    });
+
+    // 3. Dynamic Navbar Section Observer (IntersectionObserver)
     const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-item');
+    const navItems = document.querySelectorAll('.nav-links .nav-item');
 
     const observerOptions = {
         root: null,
-        rootMargin: '-20% 0px -60% 0px', // Adjust margins to trigger when section occupies middle/top of viewport
+        rootMargin: '-30% 0px -50% 0px',
         threshold: 0
     };
 
-    const observerCallback = (entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const activeId = entry.target.getAttribute('id');
-                
-                // Remove active class from all items
                 navItems.forEach(item => {
                     item.classList.remove('active');
                     if (item.getAttribute('href') === `#${activeId}`) {
@@ -107,52 +105,109 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-    };
+    }, observerOptions);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    sections.forEach(section => observer.observe(section));
+    sections.forEach(sec => observer.observe(sec));
 
-
-    // --- PART 3: CONTACT FORM SUBMISSION ---
-    const contactForm = document.getElementById('contact-form');
-    const successBanner = document.getElementById('success-banner');
-
-    if (contactForm && successBanner) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Stop page reload
-            
-            // Get inputs (could send to API here)
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            console.log('Message Received:', { name, email, message });
-
-            // Animate submit button feedback
-            const submitBtn = contactForm.querySelector('.btn-submit');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'SENDING...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                // Restore button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                
-                // Show success banner with standard jQuery-like fade-in / slide-down simulation
-                successBanner.style.display = 'block';
-                successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                
-                // Reset form inputs
-                contactForm.reset();
-
-                // Auto-hide success banner after 6 seconds
-                setTimeout(() => {
-                    successBanner.style.display = 'none';
-                }, 6000);
-
-            }, 1200);
+    // 4. Smooth scroll navigation link click handler
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
+    });
+
+    // 5. Sparkles Particle Effect inside Character Card
+    const sparklesContainer = document.getElementById('sparkles-container');
+    
+    function spawnSparkle() {
+        if (!sparklesContainer) return;
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'absolute';
+        
+        const size = Math.random() * 8 + 4;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        sparkle.style.backgroundColor = '#ff55aa';
+        sparkle.style.boxShadow = '0 0 6px #ff007f';
+        
+        const containerWidth = sparklesContainer.offsetWidth || 300;
+        const containerHeight = sparklesContainer.offsetHeight || 400;
+        
+        sparkle.style.left = `${Math.random() * (containerWidth - 40) + 20}px`;
+        sparkle.style.top = `${Math.random() * (containerHeight - 60) + 20}px`;
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.borderRadius = '2px';
+        sparkle.style.opacity = '0';
+        sparkle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+        sparklesContainer.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.style.opacity = '0.9';
+            sparkle.style.transform = 'scale(1.2)';
+        }, 50);
+
+        setTimeout(() => {
+            sparkle.style.opacity = '0';
+            sparkle.style.transform = 'scale(0.5)';
+            setTimeout(() => sparkle.remove(), 600);
+        }, 1200);
     }
+
+    if (sparklesContainer) {
+        setInterval(spawnSparkle, 700);
+    }
+
+    // 6. Canvas API Pixel Transparent Cleaner (Removes black/dark backgrounds programmatically)
+    function processImageForTransparency(img) {
+        // Skip processing if already done or hidden fallback logo
+        if (img.dataset.canvasProcessed === 'true' || img.style.display === 'none') return;
+        img.dataset.canvasProcessed = 'true';
+
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imgData.data;
+
+            // Threshold: R < 35, G < 35, B < 35 will be processed as black background
+            const threshold = 35;
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i+1];
+                const b = data[i+2];
+
+                if (r < threshold && g < threshold && b < threshold) {
+                    data[i+3] = 0; // Alpha channel -> Transparent
+                }
+            }
+
+            ctx.putImageData(imgData, 0, 0);
+            img.src = canvas.toDataURL();
+        } catch (error) {
+            console.warn("Canvas API transparent background cleaner failed (possibly CORS or file:// protocol):", error);
+        }
+    }
+
+    const blendImages = document.querySelectorAll('img.blend-img');
+    blendImages.forEach(img => {
+        if (img.complete) {
+            processImageForTransparency(img);
+        } else {
+            img.addEventListener('load', () => processImageForTransparency(img));
+        }
+    });
 
 });
