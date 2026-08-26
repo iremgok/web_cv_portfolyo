@@ -3,82 +3,31 @@
    CV View & Download Handler, Navigation Scroll, Particles, and Canvas Cleaner
    ========================================================================== */
 
-// 1. CV View & Auto Download Function (Blob & Object URL with Safe Backup Routing)
+// 1. CV View & Auto Download Function (Doğrudan cv.pdf'e bağlı ve Pop-Up güvenli)
 function handleCvDownload(event) {
     if (event) event.preventDefault();
     
-    // URL-encoded primary path and secure fallback path
-    const primaryPath = 'assets/cv/IREM_GOK%27S_CV.pdf';
-    const fallbackPath = 'assets/cv/cv.pdf';
+    const cvPath = 'assets/cv/cv.pdf';
     const fileName = 'Irem_Gok_CV.pdf';
 
-    // A) Attempt to open the primary PDF in a new tab immediately (Synchronously)
-    const newTab = window.open(primaryPath, '_blank');
+    // 1. Yeni sekmede temiz bir şekilde PDF önizlemesini aç
+    window.open(cvPath, '_blank');
 
-    // B) Simultaneously attempt to download the primary PDF file via Blob Fetch
-    fetch(primaryPath)
-        .then(response => {
-            if (!response.ok) throw new Error("Primary CV file not found");
-            return response.blob();
-        })
-        .then(blob => {
-            const blobUrl = window.URL.createObjectURL(blob);
-            const downloadLink = document.createElement('a');
-            downloadLink.href = blobUrl;
-            downloadLink.download = fileName;
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-            window.URL.revokeObjectURL(blobUrl);
-        })
-        .catch(err => {
-            console.warn("Primary CV path failed, attempting fallback path...", err);
-            
-            // Redirect the already opened tab if possible, or open fallback
-            if (newTab) {
-                try {
-                    newTab.location.href = fallbackPath;
-                } catch (e) {
-                    window.open(fallbackPath, '_blank');
-                }
-            } else {
-                window.open(fallbackPath, '_blank');
-            }
-
-            // Attempt to download the fallback PDF file
-            fetch(fallbackPath)
-                .then(response => {
-                    if (!response.ok) throw new Error("Fallback CV file not found");
-                    return response.blob();
-                })
-                .then(blob => {
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = blobUrl;
-                    downloadLink.download = fileName;
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                    window.URL.revokeObjectURL(blobUrl);
-                })
-                .catch(fallbackErr => {
-                    console.error("All CV download attempts failed:", fallbackErr);
-                    // Last resort direct download link fallback
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = fallbackPath;
-                    downloadLink.download = fileName;
-                    downloadLink.target = '_blank';
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-                });
-        });
+    // 2. Tarayıcı pop-up engelleyicisini atlatarak bilgisayara indirmeyi tetikle
+    setTimeout(() => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = cvPath;
+        downloadLink.download = fileName;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }, 250);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Bind CV download buttons using a single loop in script.js
-    const cvButtons = document.querySelectorAll('.cv-btn-nav, .cv-action-btn-large');
+    const cvButtons = document.querySelectorAll('.cv-btn-nav, .cv-action-btn, .cv-action-btn-large');
     cvButtons.forEach(btn => {
         btn.addEventListener('click', handleCvDownload);
     });
@@ -168,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Canvas API Pixel Transparent Cleaner (Removes black/dark backgrounds programmatically)
     function processImageForTransparency(img) {
-        // Skip processing if already done or hidden fallback logo
         if (img.dataset.canvasProcessed === 'true' || img.style.display === 'none') return;
         img.dataset.canvasProcessed = 'true';
 
@@ -197,13 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.putImageData(imgData, 0, 0);
             img.src = canvas.toDataURL();
         } catch (error) {
-            console.warn("Canvas API transparent background cleaner failed (possibly CORS or file:// protocol):", error);
+            console.warn("Canvas API transparent cleaner bypassed (handled via CSS mix-blend-mode):", error);
         }
     }
 
-    const blendImages = document.querySelectorAll('img.blend-img');
+    const blendImages = document.querySelectorAll('img.blend-img, img.transparent-img');
     blendImages.forEach(img => {
-        if (img.complete) {
+        if (img.complete && img.naturalWidth !== 0) {
             processImageForTransparency(img);
         } else {
             img.addEventListener('load', () => processImageForTransparency(img));
