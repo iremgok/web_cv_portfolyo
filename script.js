@@ -3,34 +3,36 @@
    CV View & Download Handler, Navigation Scroll, Particles, and Canvas Cleaner
    ========================================================================== */
 
-// 1. CV View & Auto Download Function (Doğrudan cv.pdf'e bağlı ve Pop-Up güvenli)
-function handleCvDownload(event) {
-    if (event) event.preventDefault();
-    
-    const cvPath = 'assets/cv/cv.pdf';
-    const fileName = 'Irem_Gok_CV.pdf';
-
-    // 1. Yeni sekmede temiz bir şekilde PDF önizlemesini aç
-    window.open(cvPath, '_blank');
-
-    // 2. Tarayıcı pop-up engelleyicisini atlatarak bilgisayara indirmeyi tetikle
+// 1. CV View & Auto Download Function (Safe Dual-Action Handler)
+function handleCvSafeAction(event) {
+    // Doğal link akışı ile sekmede açılmasına izin ver
+    // 300ms sonra arka planda temiz bir indirme bağlantısı tetikle
     setTimeout(() => {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = cvPath;
-        downloadLink.download = fileName;
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    }, 250);
+        const a = document.createElement('a');
+        a.href = 'assets/cv/cv.pdf';
+        a.download = 'Irem_Gok_CV.pdf';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }, 300);
+}
+
+// Utility function to escape HTML special characters to prevent XSS
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    // 2. Bind CV download buttons using a single loop in script.js
-    const cvButtons = document.querySelectorAll('.cv-btn-nav, .cv-action-btn, .cv-action-btn-large');
-    cvButtons.forEach(btn => {
-        btn.addEventListener('click', handleCvDownload);
-    });
 
     // 3. Dynamic Navbar Section Observer (IntersectionObserver)
     const sections = document.querySelectorAll('section');
@@ -157,5 +159,31 @@ document.addEventListener('DOMContentLoaded', () => {
             img.addEventListener('load', () => processImageForTransparency(img));
         }
     });
+    // Securely handle contact form submission (XSS sanitized)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('form-name');
+            const emailInput = document.getElementById('form-email');
+            const messageInput = document.getElementById('form-message');
+
+            if (nameInput && emailInput && messageInput) {
+                const nameVal = nameInput.value.trim();
+                const emailVal = emailInput.value.trim();
+                const messageVal = messageInput.value.trim();
+
+                if (!nameVal || !emailVal || !messageVal) {
+                    alert("Please fill in all fields securely.");
+                    return;
+                }
+
+                const sanitizedName = escapeHTML(nameVal);
+                alert(`Thank you for your message, ${sanitizedName}! (Message sent simulation successful)`);
+                contactForm.reset();
+            }
+        });
+    }
 
 });

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>İrem Gök | Computer Engineering Student Portfolio</title>
     <!-- Google Fonts: Pixelify Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,36 +16,6 @@
     <!-- Image Fallback Helpers (Including assets_backup directory) -->
     <script>
         function handleJohnsonLogoError(img) {
-            if (!img.dataset.stage) {
-                img.dataset.stage = "1";
-                img.src = "assets/exp1_logo.png";
-            } else if (img.dataset.stage === "1") {
-                img.dataset.stage = "2";
-                img.src = "assets_backup/exp1_logo.png";
-            } else {
-                img.style.display = "none";
-                var fb = img.nextElementSibling;
-                if (fb && fb.classList.contains('logo-fallback')) {
-                    fb.style.display = "flex";
-                }
-            }
-        }
-        function handlePhiniaLogoError(img) {
-            if (!img.dataset.stage) {
-                img.dataset.stage = "1";
-                img.src = "assets/exp2_logo.png";
-            } else if (img.dataset.stage === "1") {
-                img.dataset.stage = "2";
-                img.src = "assets_backup/exp2_logo.png";
-            } else {
-                img.style.display = "none";
-                var fb = img.nextElementSibling;
-                if (fb && fb.classList.contains('logo-fallback')) {
-                    fb.style.display = "flex";
-                }
-            }
-        }
-        function handleBakircayLogoError(img) {
             if (!img.dataset.stage) {
                 img.dataset.stage = "1";
                 img.src = "assets/exp3_logo.png";
@@ -58,9 +30,51 @@
                 }
             }
         }
+        function handlePhiniaLogoError(img) {
+            if (!img.dataset.stage) {
+                img.dataset.stage = "1";
+                img.src = "assets/exp1_logo.png";
+            } else if (img.dataset.stage === "1") {
+                img.dataset.stage = "2";
+                img.src = "assets_backup/exp1_logo.png";
+            } else {
+                img.style.display = "none";
+                var fb = img.nextElementSibling;
+                if (fb && fb.classList.contains('logo-fallback')) {
+                    fb.style.display = "flex";
+                }
+            }
+        }
+        function handleBakircayLogoError(img) {
+            if (!img.dataset.stage) {
+                img.dataset.stage = "1";
+                img.src = "assets/exp2_logo.png";
+            } else if (img.dataset.stage === "1") {
+                img.dataset.stage = "2";
+                img.src = "assets_backup/exp2_logo.png";
+            } else {
+                img.style.display = "none";
+                var fb = img.nextElementSibling;
+                if (fb && fb.classList.contains('logo-fallback')) {
+                    fb.style.display = "flex";
+                }
+            }
+        }
     </script>
 </head>
 <body>
+
+    <!-- Floating background pixel watermarks -->
+    <div class="floating-watermarks">
+        <span class="w-icon w-1">👾</span>
+        <span class="w-icon w-2">💻</span>
+        <span class="w-icon w-3">💖</span>
+        <span class="w-icon w-4">🪐</span>
+        <span class="w-icon w-5">💾</span>
+        <span class="w-icon w-6">👽</span>
+        <span class="w-icon w-7">🎾</span>
+        <span class="w-icon w-8">✨</span>
+    </div>
 
     <!-- Subtle Moving Background Circuit Lines -->
     <div class="circuit-bg circuit-left">
@@ -87,7 +101,7 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="brand">
-                <div class="brand-logo-wrapper">
+                <div class="brand-logo-box brand-logo-wrapper">
                     <img src="assets/ig_logo.png" alt="IG Logo" class="brand-logo-img" onerror="if(!this.dataset.fallback){this.dataset.fallback='true'; this.src='assets/ig_logo.jpeg';}else{this.style.display='none'; document.getElementById('alt-brand-text').style.display='flex';}">
                     <div id="alt-brand-text" class="alt-brand-box">İG</div>
                 </div>
@@ -104,7 +118,7 @@
                 <a href="#contact" class="nav-item">Contact</a>
             </nav>
             <div class="nav-cv-container">
-                <button class="cv-btn-nav">CV</button>
+                <a href="assets/cv/cv.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn-nav" onclick="handleCvSafeAction(event)">CV</a>
             </div>
         </div>
     </header>
@@ -281,28 +295,29 @@
                 <div class="contact-container">
                     
                     <!-- Retro Pixel Contact Form -->
-                    <form class="retro-form" onsubmit="event.preventDefault(); alert('Message sent successfully (Simulation)!');">
+                    <!-- Retro Pixel Contact Form -->
+                    <form class="retro-form" id="contact-form">
                         <div class="form-group">
                             <label for="form-name">NAME / SURNAME</label>
-                            <input type="text" id="form-name" required placeholder="ENTER YOUR NAME...">
+                            <input type="text" id="form-name" required maxlength="100" pattern="^[a-zA-ZğüşöçıİĞÜŞÖÇ\s]+$" placeholder="ENTER YOUR NAME (LETTERS ONLY)...">
                         </div>
                         <div class="form-group">
                             <label for="form-email">EMAIL ADDRESS</label>
-                            <input type="email" id="form-email" required placeholder="ENTER YOUR EMAIL...">
+                            <input type="email" id="form-email" required maxlength="100" placeholder="ENTER YOUR EMAIL...">
                         </div>
                         <div class="form-group">
                             <label for="form-message">YOUR MESSAGE</label>
-                            <textarea id="form-message" rows="4" required placeholder="WRITE YOUR MESSAGE HERE..."></textarea>
+                            <textarea id="form-message" rows="4" required maxlength="2000" placeholder="WRITE YOUR MESSAGE HERE..."></textarea>
                         </div>
                         <button type="submit" class="form-submit-btn">SEND MESSAGE</button>
                     </form>
 
                     <!-- Social Links -->
                     <div class="social-links-grid">
-                        <a href="https://linkedin.com/in/iremgok" target="_blank" class="social-btn">
+                        <a href="https://linkedin.com/in/iremgok" target="_blank" rel="noopener noreferrer" class="social-btn">
                             <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="https://github.com/iremgok" target="_blank" class="social-btn">
+                        <a href="https://github.com/iremgok" target="_blank" rel="noopener noreferrer" class="social-btn">
                             <i class="fa-brands fa-github"></i> GitHub
                         </a>
                         <a href="mailto:iremgk1803@gmail.com" class="social-btn">
@@ -314,7 +329,7 @@
                     </div>
                     
                     <!-- Full-Width Bottom CV Button -->
-                    <button class="cv-action-btn-large">CV</button>
+                    <a href="assets/cv/cv.pdf" target="_blank" rel="noopener noreferrer" class="social-btn cv-action-btn" onclick="handleCvSafeAction(event)">CV</a>
                 </div>
             </section>
 
