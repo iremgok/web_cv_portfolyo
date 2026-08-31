@@ -20,7 +20,7 @@ web_cv_portfolyo/
 │
 ├── assets/
 │   ├── cv/
-│   │   └── cv.pdf
+│   │   └── IREM_GOK_CV.pdf
 │   ├── character.jpeg
 │   ├── exp1_logo.png
 │   ├── exp2_logo.png

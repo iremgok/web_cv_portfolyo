@@ -9,8 +9,8 @@ function handleCvSafeAction(event) {
     // 300ms sonra arka planda temiz bir indirme bağlantısı tetikle
     setTimeout(() => {
         const a = document.createElement('a');
-        a.href = 'assets/cv/cv.pdf';
-        a.download = 'Irem_Gok_CV.pdf';
+        a.href = 'assets/cv/IREM_GOK_CV.pdf';
+        a.download = 'IREM_GOK_CV.pdf';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
