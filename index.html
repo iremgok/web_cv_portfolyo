@@ -18,21 +18,6 @@
         function handleJohnsonLogoError(img) {
             if (!img.dataset.stage) {
                 img.dataset.stage = "1";
-                img.src = "assets/exp3_logo.png";
-            } else if (img.dataset.stage === "1") {
-                img.dataset.stage = "2";
-                img.src = "assets_backup/exp3_logo.png";
-            } else {
-                img.style.display = "none";
-                var fb = img.nextElementSibling;
-                if (fb && fb.classList.contains('logo-fallback')) {
-                    fb.style.display = "flex";
-                }
-            }
-        }
-        function handlePhiniaLogoError(img) {
-            if (!img.dataset.stage) {
-                img.dataset.stage = "1";
                 img.src = "assets/exp1_logo.png";
             } else if (img.dataset.stage === "1") {
                 img.dataset.stage = "2";
@@ -45,13 +30,28 @@
                 }
             }
         }
-        function handleBakircayLogoError(img) {
+        function handlePhiniaLogoError(img) {
             if (!img.dataset.stage) {
                 img.dataset.stage = "1";
                 img.src = "assets/exp2_logo.png";
             } else if (img.dataset.stage === "1") {
                 img.dataset.stage = "2";
                 img.src = "assets_backup/exp2_logo.png";
+            } else {
+                img.style.display = "none";
+                var fb = img.nextElementSibling;
+                if (fb && fb.classList.contains('logo-fallback')) {
+                    fb.style.display = "flex";
+                }
+            }
+        }
+        function handleBakircayLogoError(img) {
+            if (!img.dataset.stage) {
+                img.dataset.stage = "1";
+                img.src = "assets/exp3_logo.png";
+            } else if (img.dataset.stage === "1") {
+                img.dataset.stage = "2";
+                img.src = "assets_backup/exp3_logo.png";
             } else {
                 img.style.display = "none";
                 var fb = img.nextElementSibling;
