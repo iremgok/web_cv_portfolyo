@@ -38,3 +38,4 @@ jspm_packages/
 # Antigravity Brain / Gemini Cache Directories
 .gemini/
 scratch/
+dist/

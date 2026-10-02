@@ -1,68 +1,44 @@
-🎮 İrem Gök — Pixel Art Portfolio Website
-A retro-gaming & Stardew Valley inspired personal developer portfolio created with clean HTML5, CSS3, and Vanilla JavaScript. Built with a sleek dark aesthetic featuring glowing magenta/pink circuit lines and interactive 2D pixel-art character elements.
+# İrem Gök | Portfolio
 
-🚀 Features
-Retro Pixel Aesthetic: Styled with Google Fonts' Pixelify Sans, neon pink highlights (#ff007f), and custom pixel-art borders.
+Personal portfolio built with **React (Vite)**, **Tailwind CSS v4**, **Framer Motion** and **Lucide React**.
+Dark cyberpunk / retro-pixel theme with neon pink (`#ff007f`), violet (`#8a2be2`) and electric blue accents.
 
-Interactive 2D Character: Idle floating animation featuring a tennis-playing, laptop-holding pixel avatar.
+## Getting started
 
-Single-Page Navigation: Sticky top navigation bar with dynamic active-section highlighting via IntersectionObserver.
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # production build → dist/
+npm run preview   # serves dist/ with the same security headers as vercel.json
+```
 
-Automatic Transparency: Built-in Canvas API filter and CSS mix-blend-mode to blend dark image assets into the background.
+## Structure
 
-Dual-Action CV Button: Opens the resume PDF in a new browser tab while simultaneously triggering a local file download.
+```
+public/assets/            images, logos and cv/IREM_GOK_CV.pdf (served as /assets/...)
+src/
+├── data/content.js       all text: profile, timeline, projects, tech stack
+├── components/
+│   ├── Navbar.jsx        glass navbar, active-section highlight, mobile menu
+│   ├── Hero.jsx          intro, CTAs, floating character
+│   ├── FloatingDecor.jsx pixel alien / heart / laptop / planet / floppy decor
+│   ├── About.jsx
+│   ├── Experience.jsx    timeline with logos
+│   ├── Projects.jsx      cards + details modal
+│   ├── TechStack.jsx     tabbed grid
+│   ├── Contact.jsx       validated form (opens mail client), socials, CV button
+│   ├── Footer.jsx
+│   ├── Reveal.jsx        shared scroll animations
+│   └── BrandIcons.jsx    GitHub / LinkedIn SVGs
+├── App.jsx
+└── index.css             Tailwind theme tokens & component classes
+vercel.json               CSP, COOP/COEP/CORP, X-Frame-Options, HSTS, caching
+```
 
-Responsive Layout: Adaptive design that reorganizes smoothly for desktop, tablet, and mobile screen sizes.
+To change content, edit `src/data/content.js` only.
 
-📁 Project Structure
-Plaintext
-web_cv_portfolyo/
-│
-├── assets/
-│   ├── cv/
-│   │   └── IREM_GOK_CV.pdf
-│   ├── character.jpeg
-│   ├── exp1_logo.png
-│   ├── exp2_logo.png
-│   ├── exp3_logo1.png
-│   ├── ig_logo.png
-│   ├── project1.jpeg
-│   ├── project2.png
-│   └── project3.png
-│
-├── index.html
-├── styles.css
-├── script.js
-└── README.md
-🛠️ Tech Stack
-HTML5: Semantic structure and SVGs.
+## Security
 
-CSS3: Custom scrollbar, animations, neon drop-shadows, and media queries.
-
-JavaScript (Vanilla): DOM manipulation, Canvas pixel processing, and download event handlers.
-
-Icons & Fonts: FontAwesome 6, Pixelify Sans.
-
-⚡ Getting Started
-1. Clone the repository
-Bash
-git clone https://github.com/iremgok/web_cv_portfolyo.git
-cd web_cv_portfolyo
-2. Run locally
-You can open index.html directly in any web browser, or serve it via Python:
-
-Bash
-# Python 3
-python -m http.server 8000
-Open http://localhost:8000 in your browser.
-
-📬 Contact & Links
-Developer: İrem Gök
-
-Education: İzmir Bakırçay University — Computer Engineering
-
-LinkedIn: linkedin.com/in/iremgok
-
-GitHub: github.com/iremgok
-
-Email: iremgk1803@gmail.com
+- Strict CSP: `script-src 'self'`, `font-src 'self'` (fonts are self-hosted via `@fontsource`), no third-party origins.
+- Asset inlining is disabled in `vite.config.js` so nothing is emitted as a `data:` font that the CSP would block.
+- All external links use `target="_blank" rel="noopener noreferrer"`; no inline JS handlers.
