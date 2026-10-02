@@ -19,8 +19,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 variants={fadeInUp} className="mt-6 text-4xl leading-tight font-extrabold sm:text-5xl lg:text-6xl">
-            Hi, I&apos;m <span className="text-gradient">{profile.name}</span>{' '}
-            <span className="animate-wave inline-block origin-[70%_70%]">👋</span>
+            Hi, I&apos;m <span className="text-gradient">{profile.name}</span>
           </motion.h1>
 
           <motion.p variants={fadeInUp} className="mt-4 font-display text-xl font-semibold text-white/90 sm:text-2xl">
@@ -35,7 +34,7 @@ export default function Hero() {
 
           <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
             <span className="inline-flex items-center gap-2">
-              <GraduationCap className="size-4 text-electric" /> İzmir Bakırçay University · GPA {profile.gpa}
+              <GraduationCap className="size-4 text-electric" /> Izmir Bakircay University · GPA {profile.gpa}
             </span>
             <span className="inline-flex items-center gap-2">
               <MapPin className="size-4 text-electric" /> {profile.location}
@@ -59,11 +58,11 @@ export default function Hero() {
           className="relative mx-auto w-full max-w-sm"
         >
           <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-neon/30 via-violet/25 to-electric/20 blur-3xl" />
-          <div className="animate-float relative">
-            <div className="animate-glow relative rounded-[2rem] border-2 border-neon bg-surface/70 p-3">
+          <div className="animate-character-float relative">
+            <div className="animate-neon-pulse relative rounded-[2rem] border-2 border-neon bg-surface/70 p-3">
               <img
                 src="/assets/character_transparent.png"
-                alt="Pixel-art illustration of İrem Gök"
+                alt="Pixel-art illustration of Irem Gok"
                 width="1194"
                 height="1730"
                 className="aspect-[1194/1730] max-h-[70vh] w-full rounded-[1.5rem] object-contain"

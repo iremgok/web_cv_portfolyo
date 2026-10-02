@@ -1,12 +1,12 @@
 export const profile = {
-  name: 'İrem Gök',
+  name: 'Irem Gok',
   title: 'Computer Engineering Student & Software Developer',
-  location: 'İzmir, Türkiye',
+  location: 'Izmir, Türkiye',
   gpa: '3.44 / 4.00',
   email: 'iremgk1803@gmail.com',
   phone: '+905527907090',
   phoneDisplay: '+90 552 790 70 90',
-  linkedin: 'https://linkedin.com/in/iremgok',
+  linkedin: 'https://www.linkedin.com/in/gokirem',
   github: 'https://github.com/iremgok',
   cv: '/assets/cv/IREM_GOK_CV.pdf',
 }
@@ -22,7 +22,7 @@ export const navLinks = [
 export const timeline = [
   {
     type: 'education',
-    org: 'İzmir Bakırçay University',
+    org: 'Izmir Bakircay University',
     role: 'B.Sc. Computer Engineering',
     period: '4th Year',
     meta: 'GPA: 3.44 / 4.00',
@@ -63,7 +63,7 @@ export const timeline = [
   },
   {
     type: 'work',
-    org: 'İzmir Bakırçay University',
+    org: 'Izmir Bakircay University',
     role: 'Part-time Student Employee, Smart University & Digital Transformation Office',
     period: '2025',
     logo: '/assets/exp3_logo.png',
@@ -101,7 +101,7 @@ export const projects = [
     tags: ['Python', 'Scikit-Learn', 'TensorFlow', 'Pandas'],
   },
   {
-    title: 'Bakırçay Underwater AUV',
+    title: 'Bakircay Underwater AUV',
     badge: 'TEKNOFEST 2026',
     image: '/assets/project1.png',
     summary: 'Autonomous underwater vehicle software with real-time computer vision for navigation and mission tasks.',
@@ -139,7 +139,7 @@ export const projects = [
 
 export const techStack = {
   Languages: ['Python', 'C#', 'C++', 'C', 'SQL', 'Dart'],
-  Frameworks: ['ASP.NET Core', 'FastAPI', 'Angular', 'Flutter', 'Unity'],
+  Frameworks: ['ASP.NET Core', 'FastAPI', 'Angular', 'Flutter'],
   'ML & Data': ['Scikit-Learn', 'TensorFlow', 'Keras', 'OpenCV', 'Pandas', 'NumPy'],
-  'Dev Tools': ['Docker', 'Git', 'GitHub', 'Blender', 'Supabase', 'Redis'],
+  'Dev Tools': ['Docker', 'Git', 'Unity', 'Blender', 'Ansys', 'Assembly'],
 }

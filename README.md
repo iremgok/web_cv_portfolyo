@@ -1,4 +1,4 @@
-# İrem Gök | Portfolio
+# Irem Gok | Portfolio
 
 Personal portfolio built with **React (Vite)**, **Tailwind CSS v4**, **Framer Motion** and **Lucide React**.
 Dark cyberpunk / retro-pixel theme with neon pink (`#ff007f`), violet (`#8a2be2`) and electric blue accents.

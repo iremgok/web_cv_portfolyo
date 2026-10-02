@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Download, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { navLinks, profile } from '../data/content'
 
 export default function Navbar() {
@@ -40,9 +40,9 @@ export default function Navbar() {
         <a
           href="#home"
           className="flex size-10 items-center justify-center rounded-xl border border-neon/60 bg-neon/10 font-pixel text-lg text-neon shadow-neon-sm transition hover:bg-neon hover:text-white"
-          aria-label="İrem Gök, back to top"
+          aria-label="Irem Gok, back to top"
         >
-          İG
+          IG
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -64,7 +64,7 @@ export default function Navbar() {
             </a>
           ))}
           <a href={profile.cv} download="IREM_GOK_CV.pdf" className="btn-neon ml-3 px-4 py-2 text-sm">
-            <Download className="size-4" /> CV
+            CV
           </a>
         </div>
 
@@ -99,7 +99,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a href={profile.cv} download="IREM_GOK_CV.pdf" onClick={closeMenu} className="btn-neon mt-2">
-                <Download className="size-4" /> Download CV
+                CV
               </a>
             </div>
           </motion.div>

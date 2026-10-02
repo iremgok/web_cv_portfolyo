@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Heart, Laptop, Orbit, Save } from 'lucide-react'
+import { Orbit } from 'lucide-react'
 
 // 11x8 pixel-art space invader
 const ALIEN = [
@@ -24,12 +24,9 @@ function PixelAlien({ className }) {
 }
 
 const items = [
-  { Icon: PixelAlien, className: 'left-[6%] top-[22%] w-14 text-neon/40', duration: 7, delay: 0 },
-  { Icon: Heart, className: 'right-[8%] top-[16%] size-9 text-neon/35', duration: 6, delay: 1 },
-  { Icon: Laptop, className: 'left-[12%] bottom-[14%] size-11 text-electric/30', duration: 8, delay: 0.5 },
-  { Icon: Orbit, className: 'right-[44%] top-[10%] size-10 text-violet/40', duration: 9, delay: 1.5 },
-  { Icon: Save, className: 'right-[6%] bottom-[20%] size-9 text-electric/30', duration: 7.5, delay: 2 },
-  { Icon: PixelAlien, className: 'right-[30%] bottom-[8%] w-9 text-violet/35', duration: 6.5, delay: 0.8 },
+  { Icon: PixelAlien, className: 'left-[6%] top-[22%] w-12 text-neon/20', duration: 8, delay: 0 },
+  { Icon: Orbit, className: 'right-[44%] top-[10%] size-9 text-violet/20', duration: 10, delay: 1.5 },
+  { Icon: PixelAlien, className: 'right-[30%] bottom-[8%] w-8 text-electric/15', duration: 9, delay: 0.8 },
 ]
 
 export default function FloatingDecor() {
@@ -40,7 +37,7 @@ export default function FloatingDecor() {
         <motion.div
           key={i}
           className={`absolute ${className}`}
-          animate={reduce ? undefined : { y: [0, -18, 0], rotate: [0, 6, -4, 0] }}
+          animate={reduce ? undefined : { y: [0, -12, 0] }}
           transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
         >
           <Icon className="size-full" />

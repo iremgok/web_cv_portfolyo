@@ -19,25 +19,23 @@
   --shadow-neon-sm: 0 0 12px rgb(255 0 127 / 0.35);
   --shadow-violet: 0 0 24px rgb(138 43 226 / 0.35);
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-glow: glow 3s ease-in-out infinite;
-  --animate-wave: wave 2.5s ease-in-out infinite;
+  --animate-character-float: characterFloat 5s ease-in-out infinite;
+  --animate-neon-pulse: neonPulse 2.8s ease-in-out infinite;
 
-  @keyframes wave {
-    0%, 60%, 100% { transform: rotate(0deg); }
-    10%, 30% { transform: rotate(14deg); }
-    20% { transform: rotate(-8deg); }
-    40% { transform: rotate(-4deg); }
-    50% { transform: rotate(10deg); }
+  /* Idle bob with a subtle "breathing" scale */
+  @keyframes characterFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.015); }
   }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
-  }
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgb(255 0 127 / 0.45), 0 0 60px rgb(138 43 226 / 0.2); }
-    50% { box-shadow: 0 0 34px rgb(255 0 127 / 0.7), 0 0 90px rgb(138 43 226 / 0.35); }
+  @keyframes neonPulse {
+    0%, 100% {
+      border-color: rgb(255 0 127 / 0.75);
+      box-shadow: 0 0 16px rgb(255 0 127 / 0.4), 0 0 48px rgb(138 43 226 / 0.18);
+    }
+    50% {
+      border-color: rgb(255 0 127 / 1);
+      box-shadow: 0 0 34px rgb(255 0 127 / 0.75), 0 0 90px rgb(138 43 226 / 0.35);
+    }
   }
 }
 

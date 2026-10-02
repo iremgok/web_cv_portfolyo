@@ -31,7 +31,7 @@ export default function About() {
       <Reveal className="mx-auto max-w-3xl space-y-5 text-center text-lg leading-relaxed text-muted">
         <p>
           I&apos;m a senior <span className="text-white">Computer Engineering</span> student at{' '}
-          <span className="text-white">İzmir Bakırçay University</span> with a 3.44 GPA. I enjoy problems where software
+          <span className="text-white">Izmir Bakircay University</span> with a 3.44 GPA. I enjoy problems where software
           meets the real world: robots that see underwater, simulations that train doctors, tools that make factories smarter.
         </p>
         <p>

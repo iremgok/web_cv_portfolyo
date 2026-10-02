@@ -29,8 +29,8 @@ export function Reveal({ as = 'div', variants = fadeInUp, className, children, .
 export function SectionHeading({ eyebrow, title, subtitle }) {
   return (
     <Reveal className="mb-12 text-center">
-      <p className="font-pixel text-sm tracking-[0.25em] text-neon uppercase">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold sm:text-4xl">{title}</h2>
+      <p className="font-pixel text-lg tracking-[0.2em] text-neon uppercase sm:text-xl">{eyebrow}</p>
+      <h2 className="mt-4 text-4xl leading-tight font-bold sm:text-5xl lg:text-6xl">{title}</h2>
       {subtitle && <p className="mx-auto mt-4 max-w-2xl text-muted">{subtitle}</p>}
     </Reveal>
   )

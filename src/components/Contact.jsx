@@ -6,7 +6,7 @@ import { GithubIcon, LinkedinIcon } from './BrandIcons'
 import { Reveal, SectionHeading } from './Reveal'
 
 const socials = [
-  { label: 'LinkedIn', value: 'in/iremgok', href: profile.linkedin, Icon: LinkedinIcon, external: true },
+  { label: 'LinkedIn', value: 'in/gokirem', href: profile.linkedin, Icon: LinkedinIcon, external: true },
   { label: 'GitHub', value: '@iremgok', href: profile.github, Icon: GithubIcon, external: true },
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
   { label: 'Phone', value: profile.phoneDisplay, href: `tel:${profile.phone}`, Icon: Phone },
@@ -84,7 +84,7 @@ export default function Contact() {
             <Field id="email" label="Email" type="email" placeholder="jane@example.com" value={form.email} onChange={handleChange} error={errors.email} autoComplete="email" maxLength={150} />
           </div>
           <Field id="subject" label="Subject" placeholder="Internship opportunity" value={form.subject} onChange={handleChange} error={errors.subject} maxLength={150} />
-          <Field id="message" label="Message" as="textarea" rows={5} placeholder="Hi İrem, ..." value={form.message} onChange={handleChange} error={errors.message} maxLength={2000} className="resize-y" />
+          <Field id="message" label="Message" as="textarea" rows={5} placeholder="Hi Irem, ..." value={form.message} onChange={handleChange} error={errors.message} maxLength={2000} className="resize-y" />
           <button type="submit" className="btn-neon w-full sm:w-auto">
             <Send className="size-4" /> Send Message
           </button>
@@ -116,7 +116,7 @@ export default function Contact() {
           <a
             href={profile.cv}
             download="IREM_GOK_CV.pdf"
-            className="animate-glow group flex items-center justify-center gap-3 rounded-2xl border-2 border-neon bg-gradient-to-r from-neon to-fuchsia-600 px-8 py-6 text-lg font-bold text-white transition hover:-translate-y-1"
+            className="animate-neon-pulse group flex items-center justify-center gap-3 rounded-2xl border-2 border-neon bg-gradient-to-r from-neon to-fuchsia-600 px-8 py-6 text-lg font-bold text-white transition hover:-translate-y-1"
           >
             <Download className="size-6 transition group-hover:translate-y-0.5" />
             Download CV
