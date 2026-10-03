@@ -4,8 +4,6 @@ export const profile = {
   location: 'Izmir, Türkiye',
   gpa: '3.44 / 4.00',
   email: 'iremgk1803@gmail.com',
-  phone: '+905527907090',
-  phoneDisplay: '+90 552 790 70 90',
   linkedin: 'https://www.linkedin.com/in/gokirem',
   github: 'https://github.com/iremgok',
   cv: '/assets/cv/IREM_GOK_CV.pdf',

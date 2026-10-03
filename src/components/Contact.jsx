@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { CircleCheck, Download, Mail, Phone, Send } from 'lucide-react'
+import { CircleCheck, Download, Mail, Send } from 'lucide-react'
 import { profile } from '../data/content'
 import { GithubIcon, LinkedinIcon } from './BrandIcons'
 import { Reveal, SectionHeading } from './Reveal'
@@ -8,8 +8,7 @@ import { Reveal, SectionHeading } from './Reveal'
 const socials = [
   { label: 'LinkedIn', value: 'in/gokirem', href: profile.linkedin, Icon: LinkedinIcon, external: true },
   { label: 'GitHub', value: '@iremgok', href: profile.github, Icon: GithubIcon, external: true },
-  { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
-  { label: 'Phone', value: profile.phoneDisplay, href: `tel:${profile.phone}`, Icon: Phone },
+  { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, Icon: Mail, wide: true },
 ]
 
 const EMPTY = { name: '', email: '', subject: '', message: '' }
@@ -97,12 +96,12 @@ export default function Contact() {
 
         <Reveal className="flex flex-col gap-6">
           <div className="grid grid-cols-2 gap-4">
-            {socials.map(({ label, value, href, Icon, external }) => (
+            {socials.map(({ label, value, href, Icon, external, wide }) => (
               <a
                 key={label}
                 href={href}
                 {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className="card card-hover group flex flex-col gap-3 p-5"
+                className={`card card-hover group flex flex-col gap-3 p-5 ${wide ? 'col-span-2' : ''}`}
               >
                 <span className="inline-flex size-11 items-center justify-center rounded-xl border border-neon/40 bg-neon/10 text-neon transition group-hover:bg-neon group-hover:text-white">
                   <Icon className="size-5" />
