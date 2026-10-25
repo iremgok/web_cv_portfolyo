@@ -78,8 +78,7 @@ export const timeline = [
     role: 'Researcher & Developer',
     period: '2025 – 2026',
     points: [
-      'VR Occupational Health & Safety (OHS / İSG) training simulation.',
-      'Port Catheter medical procedure simulation: R&D in Unity & Blender.',
+      'VR Occupational Health & Safety (OHS / İSG) training simulation: R&D in Unity & Blender.',
     ],
     tags: ['Unity', 'Blender', 'C#', 'VR'],
   },
@@ -111,12 +110,11 @@ export const projects = [
     tags: ['Python', 'OpenCV', 'C++', 'Embedded'],
   },
   {
-    title: 'VR Port Catheter & OHS Simulations',
+    title: 'VR OHS Training Simulation',
     badge: 'TÜBİTAK 1002-A',
     image: '/assets/project2.png',
-    summary: 'Immersive medical and occupational-safety training simulations built in Unity and Blender.',
+    summary: 'Immersive occupational-safety training simulation built in Unity and Blender.',
     details: [
-      'Port catheter procedure simulation for medical training.',
       'VR Occupational Health & Safety scenarios with interactive hazards.',
       '3D assets modeled in Blender, interactions scripted in C#.',
     ],
